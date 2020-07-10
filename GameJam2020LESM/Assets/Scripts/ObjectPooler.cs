@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
-    [System.Serializable] //Abilita que este en el inspector
+    [System.Serializable] //Habilita que este en el inspector
     public class Pool //Clase del pool
     {
         public string tag;
