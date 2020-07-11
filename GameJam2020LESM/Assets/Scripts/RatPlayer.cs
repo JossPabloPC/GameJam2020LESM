@@ -1,20 +1,20 @@
-﻿using System.Collections;
+﻿using Microsoft.Win32.SafeHandles;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class RatPlayer : MonoBehaviour
 {
 
     private Rigidbody2D rBody;
     public float speed;
     public bool isIdle;
-    private int power;
 
     // Start is called before the first frame update
     void Start()
     {
         rBody = GetComponent<Rigidbody2D>();
-        power = 0;
     }
 
     // Update is called once per frame
@@ -22,25 +22,38 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.DownArrow))
         {
+            Debug.Log("Abajo");
             rBody.transform.Translate(Vector2.down * speed * Time.deltaTime, Space.World);
-            rBody.transform.eulerAngles = new Vector3(0, 0, 180);
+            rBody.transform.eulerAngles = new Vector3(0,0,180);
         }
         else if (Input.GetKey(KeyCode.UpArrow))
         {
+            Debug.Log("Arriba");
+
             rBody.transform.Translate(Vector2.up * speed * Time.deltaTime, Space.World);
-            rBody.transform.eulerAngles = new Vector3(0, 0, 0);
+            rBody.transform.eulerAngles = new Vector3(0,0,0); 
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
+            Debug.Log("Der");
+
             rBody.transform.Translate(Vector2.right * speed * Time.deltaTime, Space.World);
-            transform.eulerAngles = new Vector3(0, 0, -90);
+            transform.eulerAngles = new Vector3(0, 0,-90);
         }
 
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            rBody.transform.Translate(Vector2.left * speed * Time.deltaTime, Space.World);
-            rBody.transform.eulerAngles = new Vector3(0, 0, 90);
-        }
+            Debug.Log("Izq");
 
+            rBody.transform.Translate(Vector2.left * speed * Time.deltaTime, Space.World);
+            rBody.transform.eulerAngles = new Vector3(0,0,90);
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Queso"))
+        {
+
+        }
     }
 }
