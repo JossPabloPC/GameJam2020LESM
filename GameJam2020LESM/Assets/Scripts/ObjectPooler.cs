@@ -7,23 +7,23 @@ using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
-    [System.Serializable] //Habilita que este en el inspector
+    [System.Serializable] //Habilita que esté en el inspector y es editable
     public class Pool //Clase del pool
     {
-        public string tag;
-        public GameObject prefab;
-        public int size;
+        public string tag; //Nombre (para identificarlos)
+        public GameObject prefab;  
+        public int size;          
     }
 
-    public static ObjectPooler Instance;
+    public static ObjectPooler Instance; 
 
-    public List<Pool> pools; //List que permite añador las pools desde el inspector
-    public Dictionary<string, Queue<GameObject>> poolDictionary; //Se crea el diccionario
+    public List<Pool> pools; //List que permite añadir las pools desde el inspector
+    public Dictionary<string, Queue<GameObject>> poolDictionary; //Se crea el diccionario que guarda las listas
 
     private void Awake()
     {
         Instance = this;
-        poolDictionary = new Dictionary<string, Queue<GameObject>>(); //Seinicializa el diccionario
+        poolDictionary = new Dictionary<string, Queue<GameObject>>(); //Se inicializa el diccionario
         foreach (Pool pool in pools)//Recorremos la lista de pool para añadirla al diccionario
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
