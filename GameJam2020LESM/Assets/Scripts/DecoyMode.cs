@@ -93,8 +93,16 @@ public class DecoyMode : MonoBehaviour
     }
     IEnumerator WaitQueso(Collision2D other)
     {
+        Debug.Log("Inicie corrutina");
         yield return new WaitForSeconds(2);
         currectSpeed = speed;
-        Destroy(other.gameObject);
+        try
+        {
+            if (other != null)
+            {
+                Destroy(other.gameObject);
+            }
+        }
+        catch { }
     }
 }
