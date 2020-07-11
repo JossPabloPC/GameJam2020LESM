@@ -81,8 +81,8 @@ public class DecoyMode : MonoBehaviour
             }
             else if (other.collider.CompareTag("Queso"))
             {
+                Debug.Log("Colisione con Queso");
                 currectSpeed = 0;
-                Debug.Log("Comiendo con Queso");
                 StartCoroutine(WaitQueso(other));
             }
 
@@ -103,11 +103,14 @@ public class DecoyMode : MonoBehaviour
         try
         {
             QuesoBehaviour currentQueso = other.gameObject.GetComponent<QuesoBehaviour>();
-            if (currentQueso.isEnvenenado == true) {
+            if (currentQueso.isEnvenenado == true)
+            {
                 Debug.Log("Estoy envenenado");
                 estoyEnvenenado = true;
             }
+
             Destroy(other.gameObject);
+            QuesoSPawn.Instance
         }
         catch { }
     }
