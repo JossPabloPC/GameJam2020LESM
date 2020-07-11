@@ -23,7 +23,7 @@ public class QuesoSPawn : MonoBehaviour
         timer -= 0.01;
         if(timer <= 0)
         {
-            spawnPoint.x =  (float)(Random.Range(-8, 9)-0.5);
+            spawnPoint.x =  (float)(Random.Range(-8, 9)- 0.5);
             spawnPoint.y = (float)(Random.Range(-4, 5) - 0.5);
             GameObject instance = Instantiate(Queso, spawnPoint, Quaternion.identity);
             instance.name = "Queso" + quesosEnEscena.Count;
