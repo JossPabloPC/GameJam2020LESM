@@ -77,8 +77,8 @@ public class DecoyMode : MonoBehaviour
             }
             else if (other.collider.CompareTag("Queso"))
             {
+                Debug.Log("Colisione con Queso");
                 currectSpeed = 0;
-                Debug.Log("Comiendo con Queso");
                 StartCoroutine(WaitQueso(other));
             }
 
@@ -95,11 +95,6 @@ public class DecoyMode : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         currectSpeed = speed;
-        QuesoBehaviour quesoComiendo = other.gameObject.GetComponent<QuesoBehaviour>();
-        if (!quesoComiendo.estaComiendose)
-        {
-            Destroy(quesoComiendo.gameObject);
-            Destroy(other.gameObject);
-        }
+        Destroy(other.gameObject);
     }
 }

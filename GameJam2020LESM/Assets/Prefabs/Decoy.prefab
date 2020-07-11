@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6966414530913305363}
   m_Layer: 0
   m_Name: Decoy
-  m_TagString: Decoy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  currectSpeed: 0
 --- !u!61 &6966414530913305363
 BoxCollider2D:
   m_ObjectHideFlags: 0
