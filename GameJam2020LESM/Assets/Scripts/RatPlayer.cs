@@ -24,25 +24,21 @@ public class RatPlayer : MonoBehaviour
         {
             Debug.Log("Abajo");
             rBody.transform.Translate(Vector2.down * speed * Time.deltaTime, Space.World);
-            rBody.transform.eulerAngles = new Vector3(0,0,180); 
-
+            rBody.transform.eulerAngles = new Vector3(0,0,180);
         }
         else if (Input.GetKey(KeyCode.UpArrow))
         {
             Debug.Log("Arriba");
 
             rBody.transform.Translate(Vector2.up * speed * Time.deltaTime, Space.World);
-            //rBody.transform.localScale = new Vector3(1f, 1f, 1f);
             rBody.transform.eulerAngles = new Vector3(0,0,0); 
-
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             Debug.Log("Der");
 
             rBody.transform.Translate(Vector2.right * speed * Time.deltaTime, Space.World);
-            //rBody.transform.localScale = new Vector3(1f, 1f, 1f);
-            transform.eulerAngles = new Vector3(0, 0, -90);
+            transform.eulerAngles = new Vector3(0, 0,-90);
         }
 
         else if (Input.GetKey(KeyCode.LeftArrow))
@@ -50,8 +46,13 @@ public class RatPlayer : MonoBehaviour
             Debug.Log("Izq");
 
             rBody.transform.Translate(Vector2.left * speed * Time.deltaTime, Space.World);
-            //rBody.transform.localScale = new Vector3(-1f, 1f, 1f);
             rBody.transform.eulerAngles = new Vector3(0,0,90);
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Queso"))
+        {
 
         }
     }
