@@ -11,9 +11,15 @@ public class QuesoSPawn : MonoBehaviour
     private List<GameObject> quesosEnEscena = new List<GameObject>();
     private List<GameObject> quesosLimpios = new List<GameObject>();
     private int quesoEnvenenadoIndx;
+
+    public static QuesoSPawn Instance;
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
+        Instance = this;
+    }
+    void Start(){    
+
         timer = delay;   
     }
 
@@ -37,9 +43,14 @@ public class QuesoSPawn : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-           quesoEnvenenadoIndx = Random.Range(0, quesosLimpios.Count);
-           quesosLimpios[quesoEnvenenadoIndx].SetActive(false);
-           quesosLimpios.RemoveAt(quesoEnvenenadoIndx);
+            try
+            {
+                quesoEnvenenadoIndx = Random.Range(0, quesosLimpios.Count);
+                QuesoBehaviour currentQueso = quesosLimpios[quesoEnvenenadoIndx].GetComponent<QuesoBehaviour>();
+                currentQueso.envenenar();
+                quesosLimpios.RemoveAt(quesoEnvenenadoIndx);
+            }
+            catch { }
         }
     }
 }
