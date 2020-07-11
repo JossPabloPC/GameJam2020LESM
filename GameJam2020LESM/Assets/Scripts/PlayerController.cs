@@ -9,11 +9,20 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public bool isIdle;
     private int power;
+    private int direccion;
+
+    public Animator anim;
+
+    public void Awake()
+    {
+        anim = GetComponent<Animator>();
+        rBody = GetComponent<Rigidbody2D>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        rBody = GetComponent<Rigidbody2D>();
+        direccion = 1;
         power = 0;
     }
 
@@ -23,27 +32,38 @@ public class PlayerController : MonoBehaviour
         //Abajo
         if (Input.GetKey(KeyCode.DownArrow))
         {
+            anim.SetInteger("movement", 1);
             rBody.transform.Translate(Vector2.down * speed * Time.deltaTime, Space.World);
-            rBody.transform.eulerAngles = new Vector3(0, 0, -90);
+            rBody.transform.eulerAngles = new Vector3(0, 0, -90*direccion);
         }
         else if (Input.GetKey(KeyCode.UpArrow))
         {
             //Arriba
+            anim.SetInteger("movement",1);
             rBody.transform.Translate(Vector2.up * speed * Time.deltaTime, Space.World);
-            rBody.transform.eulerAngles = new Vector3(0, 0, 90);
+            rBody.transform.eulerAngles = new Vector3(0, 0, 90*direccion);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             //Derecha
+            anim.SetInteger("movement",1);
+            direccion = 1;
             rBody.transform.Translate(Vector2.right * speed * Time.deltaTime, Space.World);
-            transform.eulerAngles = new Vector3(0, 0, 0);
+            gameObject.transform.localScale = new Vector3(1, 1, 1);
         }
 
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             //Izquierda
+            direccion = -1;
+            anim.SetInteger("movement", 1);
             rBody.transform.Translate(Vector2.left * speed * Time.deltaTime, Space.World);
-            rBody.transform.eulerAngles = new Vector3(0, 0, -180);
+            gameObject.transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else
+        {
+            gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+            anim.SetInteger("movement", 0);
         }
     }
 }

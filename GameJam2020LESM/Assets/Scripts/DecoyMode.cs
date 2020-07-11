@@ -8,13 +8,19 @@ public class DecoyMode : MonoBehaviour
     public float speed;
     public float currectSpeed;
     private bool estoyEnvenenado;
+    public Animator anim;
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
+        anim = GetComponent<Animator>();
+    }
+    void Start()
+    { 
         estoyEnvenenado = false;
         currectSpeed = speed;
         direction[0] = 1;
         direction[1] = -1;
+        anim.SetInteger("movement", 1);
     }
 
     // Update is called once per frame
@@ -23,35 +29,34 @@ public class DecoyMode : MonoBehaviour
         drawLines();
         
         //Movimiento
-        gameObject.transform.Translate(gameObject.transform.up * currectSpeed * Time.deltaTime, Space.World);
-
+        gameObject.transform.Translate(gameObject.transform.right * currectSpeed * Time.deltaTime, Space.World);
         int layerMask = 1 << 8;
         layerMask = ~layerMask;
 
         //dirección
-        RaycastHit2D hitUp = Physics2D.Raycast(transform.position, gameObject.transform.up,0.75f,layerMask);//Ray del frente
-        RaycastHit2D hitRight = Physics2D.Raycast(transform.position - gameObject.transform.up * 0.5f, gameObject.transform.right,0.75f,layerMask);//Ray derecha
-        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position - gameObject.transform.up * 0.5f, -gameObject.transform.right,0.75f,layerMask);//Ray izquweirda
+        RaycastHit2D hitFront = Physics2D.Raycast(transform.position, gameObject.transform.right,0.75f,layerMask);//Ray del frente
+        RaycastHit2D hitUp = Physics2D.Raycast(transform.position - gameObject.transform.right * 0.1f, gameObject.transform.up,0.75f,layerMask);//Ray Arriba
+        RaycastHit2D hitDown = Physics2D.Raycast(transform.position - gameObject.transform.right * 0.1f, -gameObject.transform.up,0.75f,layerMask);//Ray Abajo
 
 
-        if (hitUp.collider != null)
+        if (hitFront.collider != null)
         {//Choques al frente
-            if(hitUp.collider.CompareTag("Wall")) {
+            if(hitFront.collider.CompareTag("Wall")) {
                 gameObject.transform.eulerAngles += new Vector3(0, 0, 90 * direction[Random.Range(0,2)]);
             }
         }
-        if (hitRight.collider != null)
-        {//Choques a la derecha
-            if (hitRight.collider.CompareTag("door") || hitRight.collider.CompareTag("Queso"))
-            {
-                gameObject.transform.eulerAngles += new Vector3(0, 0, -90);
-            }
-        }
-        if (hitLeft.collider != null)
-        {//Choques a la izq
-            if (hitLeft.collider.CompareTag("door") || hitLeft.collider.CompareTag("Queso"))
+        if (hitUp.collider != null)
+        {//Choques a la Arriba
+            if (hitUp.collider.CompareTag("door") || hitUp.collider.CompareTag("Queso"))
             {
                 gameObject.transform.eulerAngles += new Vector3(0, 0, 90);
+            }
+        }
+        if (hitDown.collider != null)
+        {//Choques a la Abajo
+            if (hitDown.collider.CompareTag("door") || hitDown.collider.CompareTag("Queso"))
+            {
+                gameObject.transform.eulerAngles += new Vector3(0, 0, -90);
             }
         }
         if (estoyEnvenenado)
@@ -60,13 +65,13 @@ public class DecoyMode : MonoBehaviour
 
     private void drawLines()
     {
-        Vector3 up = transform.TransformDirection(Vector3.up) * 0.75f;
-        Vector3 left = transform.TransformDirection(Vector3.left) * 0.75f;
-        Vector3 right = transform.TransformDirection(Vector3.right) * 0.75f;
+        Vector3 front = transform.TransformDirection(Vector3.right) * 0.75f;
+        Vector3 arriba = transform.TransformDirection(Vector3.up) * 0.75f;
+        Vector3 abajo = transform.TransformDirection(Vector3.down) * 0.75f;
 
-        Debug.DrawRay(gameObject.transform.position, up, Color.green);
-        Debug.DrawRay(gameObject.transform.position - gameObject.transform.up*0.5f, left, Color.red);
-        Debug.DrawRay(gameObject.transform.position - gameObject.transform.up*0.5f, right, Color.yellow);
+        Debug.DrawRay(gameObject.transform.position, front, Color.green);
+        Debug.DrawRay(gameObject.transform.position - gameObject.transform.right*0.1f, arriba, Color.red);
+        Debug.DrawRay(gameObject.transform.position - gameObject.transform.right*0.1f, abajo, Color.yellow);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -81,8 +86,8 @@ public class DecoyMode : MonoBehaviour
             }
             else if (other.collider.CompareTag("Queso"))
             {
-                Debug.Log("Colisione con Queso");
                 currectSpeed = 0;
+                Debug.Log("Colisione con Queso");
                 StartCoroutine(WaitQueso(other));
             }
 
@@ -91,14 +96,18 @@ public class DecoyMode : MonoBehaviour
     }
     IEnumerator WaitDoor()
     {
+        anim.SetInteger("movement", 0);
         yield return new WaitForSeconds(2);
+        anim.SetInteger("movement", 1);
         gameObject.transform.eulerAngles += new Vector3(0, 0, 180);
         currectSpeed = speed;
     }
     IEnumerator WaitQueso(Collision2D other)
     {
         Debug.Log("Inicie corrutina");
+        anim.SetInteger("movement", 0);
         yield return new WaitForSeconds(2);
+        anim.SetInteger("movement", 1);
         currectSpeed = speed;
         try
         {

@@ -256,6 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   isIdle: 0
+  anim: {fileID: 244685094}
 --- !u!50 &244685099
 Rigidbody2D:
   serializedVersion: 4
@@ -276,7 +277,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &244685100
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
