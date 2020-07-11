@@ -41,6 +41,7 @@ public class DecoyMode : MonoBehaviour
 
         if (hitFront.collider != null)
         {//Choques al frente
+            Debug.Log(hitFront.collider.tag);
             if(hitFront.collider.CompareTag("Wall")) {
                 gameObject.transform.eulerAngles += new Vector3(0, 0, 90 * direction[Random.Range(0,2)]);
             }
@@ -74,25 +75,31 @@ public class DecoyMode : MonoBehaviour
         Debug.DrawRay(gameObject.transform.position - gameObject.transform.right*0.1f, abajo, Color.yellow);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (other != null)
         {
-            if (other.collider.CompareTag("door"))
+
+            if (other.CompareTag("Queso"))
             {
-                Debug.Log("Colisione con puerta");
-                currectSpeed = 0;
-                StartCoroutine(WaitDoor());
-            }
-            else if (other.collider.CompareTag("Queso"))
-            {
-                currectSpeed = 0;
                 Debug.Log("Colisione con Queso");
                 StartCoroutine(WaitQueso(other));
             }
 
         }
         
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision != null)
+        {
+            if (collision.collider.CompareTag("door"))
+            {
+                Debug.Log("Colisione con puerta");
+                currectSpeed = 0;
+                StartCoroutine(WaitDoor());
+            }
+        }
     }
     IEnumerator WaitDoor()
     {
@@ -102,8 +109,10 @@ public class DecoyMode : MonoBehaviour
         gameObject.transform.eulerAngles += new Vector3(0, 0, 180);
         currectSpeed = speed;
     }
-    IEnumerator WaitQueso(Collision2D other)
+    IEnumerator WaitQueso(Collider2D other)
     {
+        yield return new WaitForSeconds(0.25f);
+        currectSpeed = 0;
         Debug.Log("Inicie corrutina");
         anim.SetInteger("movement", 0);
         yield return new WaitForSeconds(2);

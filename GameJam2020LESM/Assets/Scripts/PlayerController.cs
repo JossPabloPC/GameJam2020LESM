@@ -30,34 +30,34 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Abajo
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S))
         {
             anim.SetInteger("movement", 1);
-            rBody.transform.Translate(Vector2.down * speed * Time.deltaTime, Space.World);
-            rBody.transform.eulerAngles = new Vector3(0, 0, -90*direccion);
+            gameObject.transform.Translate(Vector2.down * speed * Time.deltaTime, Space.World);
+            gameObject.transform.eulerAngles = new Vector3(0, 0, -90*direccion);
         }
-        else if (Input.GetKey(KeyCode.UpArrow))
+        else if (Input.GetKey(KeyCode.W))
         {
             //Arriba
             anim.SetInteger("movement",1);
-            rBody.transform.Translate(Vector2.up * speed * Time.deltaTime, Space.World);
-            rBody.transform.eulerAngles = new Vector3(0, 0, 90*direccion);
+            gameObject.transform.Translate(Vector2.up * speed * Time.deltaTime, Space.World);
+            gameObject.transform.eulerAngles = new Vector3(0, 0, 90*direccion);
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.D))
         {
             //Derecha
             anim.SetInteger("movement",1);
             direccion = 1;
-            rBody.transform.Translate(Vector2.right * speed * Time.deltaTime, Space.World);
+            gameObject.transform.Translate(Vector2.right * speed * Time.deltaTime, Space.World);
             gameObject.transform.localScale = new Vector3(1, 1, 1);
         }
 
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.A))
         {
             //Izquierda
             direccion = -1;
             anim.SetInteger("movement", 1);
-            rBody.transform.Translate(Vector2.left * speed * Time.deltaTime, Space.World);
+            gameObject.transform.Translate(Vector2.left * speed * Time.deltaTime, Space.World);
             gameObject.transform.localScale = new Vector3(-1, 1, 1);
         }
         else

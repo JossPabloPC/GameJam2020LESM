@@ -13,7 +13,7 @@ public class PlayerCollision : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         print("Enter");
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             if (collision.gameObject.CompareTag("Queso"))
             {
@@ -25,7 +25,7 @@ public class PlayerCollision : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         print("Enter collision");
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             if (collision.gameObject.CompareTag("door"))
             {
@@ -50,11 +50,11 @@ public class PlayerCollision : MonoBehaviour
         Debug.Log("Entré a la corrutina collider");
         movement.enabled = false;
         yield return new WaitForSeconds(delay);
-        Destroy(collision.gameObject);
         up = true;
         powerController(up);
-        movement.enabled = true;
         up = false;
+        Destroy(collision.gameObject);
+        movement.enabled = true;
     }
 
     IEnumerator doorController(Collision2D collision, float delay)
