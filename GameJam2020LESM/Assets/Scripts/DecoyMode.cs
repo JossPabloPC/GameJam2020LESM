@@ -110,7 +110,6 @@ public class DecoyMode : MonoBehaviour
             }
 
             Destroy(other.gameObject);
-            QuesoSPawn.Instance
         }
         catch { }
     }
