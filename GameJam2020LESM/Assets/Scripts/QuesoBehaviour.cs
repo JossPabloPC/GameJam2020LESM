@@ -6,10 +6,11 @@ public class QuesoBehaviour : MonoBehaviour
 {
     [HideInInspector]
     public bool estaComiendose;
+    public bool isEnvenenado;
     // Start is called before the first frame update
     void Start()
     {
-        estaComiendose = false;
+        isEnvenenado = false;
     }
 
     // Update is called once per frame
@@ -17,12 +18,9 @@ public class QuesoBehaviour : MonoBehaviour
     {
 
     }
-    private void OnCollisionEnter2D(Collision2D other)
+    public void envenenar()
     {
-        if (other != null)
-        {
-            if (other.collider.CompareTag("Player") || other.collider.CompareTag("Decoy"))
-                estaComiendose = true;
-        }
+        isEnvenenado = true;
+        gameObject.transform.localScale = new Vector3(1, -1, 1);
     }
 }

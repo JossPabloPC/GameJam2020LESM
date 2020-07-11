@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Queso
   - door
+  - Decoy
   layers:
   - Default
   - TransparentFX

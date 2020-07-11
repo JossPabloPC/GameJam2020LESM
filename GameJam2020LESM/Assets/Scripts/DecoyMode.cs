@@ -7,9 +7,11 @@ public class DecoyMode : MonoBehaviour
     private float[] direction = new float[2];
     public float speed;
     public float currectSpeed;
+    private bool estoyEnvenenado;
     // Start is called before the first frame update
     void Start()
     {
+        estoyEnvenenado = false;
         currectSpeed = speed;
         direction[0] = 1;
         direction[1] = -1;
@@ -52,6 +54,8 @@ public class DecoyMode : MonoBehaviour
                 gameObject.transform.eulerAngles += new Vector3(0, 0, 90);
             }
         }
+        if (estoyEnvenenado)
+            Destroy(gameObject);
     }
 
     private void drawLines()
@@ -93,13 +97,18 @@ public class DecoyMode : MonoBehaviour
     }
     IEnumerator WaitQueso(Collision2D other)
     {
+        Debug.Log("Inicie corrutina");
         yield return new WaitForSeconds(2);
         currectSpeed = speed;
-        QuesoBehaviour quesoComiendo = other.gameObject.GetComponent<QuesoBehaviour>();
-        if (!quesoComiendo.estaComiendose)
+        try
         {
-            Destroy(quesoComiendo.gameObject);
+            QuesoBehaviour currentQueso = other.gameObject.GetComponent<QuesoBehaviour>();
+            if (currentQueso.isEnvenenado == true) {
+                Debug.Log("Estoy envenenado");
+                estoyEnvenenado = true;
+            }
             Destroy(other.gameObject);
         }
+        catch { }
     }
 }
