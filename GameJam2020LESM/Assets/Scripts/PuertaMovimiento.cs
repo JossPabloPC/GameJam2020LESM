@@ -7,6 +7,7 @@ public class PuertaMovimiento : MonoBehaviour
     // Start is called before the first frame update
     public float dimension;
     public float speed;
+    [HideInInspector]
     public bool direccion;
     private Vector3 pivot;
     public bool horizontal;
@@ -16,6 +17,7 @@ public class PuertaMovimiento : MonoBehaviour
         pivot = gameObject.transform.position;
         rb = GetComponent<Rigidbody2D>();
         //rb.isKinematic = false;
+        direccion = false;
     }
 
     // Update is called once per frame
