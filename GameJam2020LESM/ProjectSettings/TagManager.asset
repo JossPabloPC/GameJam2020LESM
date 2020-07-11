@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - cheese
+  - Queso
+  - door
   layers:
   - Default
   - TransparentFX
