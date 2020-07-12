@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         {
             //Izquierda
             direccion = -1;
-            anim.SetInteger("movement", 1);
+            anim.SetInteger("movement", 0);
             gameObject.transform.Translate(Vector2.left * speed * Time.deltaTime, Space.World);
             gameObject.transform.localScale = new Vector3(-1, 1, 1);
             gameObject.transform.eulerAngles = new Vector3(0, 0, 0);

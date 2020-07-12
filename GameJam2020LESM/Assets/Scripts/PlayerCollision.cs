@@ -6,6 +6,7 @@ using TMPro;
 public class PlayerCollision : MonoBehaviour
 {
     public PlayerController movement;
+    public Animator anim;
     public TextMeshProUGUI contadorDeQueso;
     private bool up;
     public int power = 0;
@@ -16,6 +17,7 @@ public class PlayerCollision : MonoBehaviour
 
     private void Awake()
     {
+        anim = GetComponent<Animator>();
         instance = this;
         rb = GetComponent<Rigidbody2D>();
         contadorDeQueso.text = "x 0";
@@ -34,7 +36,7 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        print("Enter collision");
+        //print("Enter collision");
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (collision.gameObject.CompareTag("door"))
@@ -77,8 +79,9 @@ public class PlayerCollision : MonoBehaviour
 
         AudioMixer.instance.sfx_rat.clip = AudioMixer.instance.lockpick;
         AudioMixer.instance.sfx_rat.Play();
-        PlayerController.instance.anim.SetInteger("movement", 3);
+        anim.SetInteger("movement", 3);
         yield return new WaitForSeconds(delay);
+        anim.SetInteger("movement", 0);
         try
         {
             Destroy(collision.gameObject);
@@ -95,11 +98,13 @@ public class PlayerCollision : MonoBehaviour
             if (power < 5)
             {
                 power++;
+                contadorDeQueso.text = "x " + power;
             }
         }
         else
         {
             power--;
+            contadorDeQueso.text = "x " + power;
         }
         Debug.Log("Poder final: " + power);
     }
