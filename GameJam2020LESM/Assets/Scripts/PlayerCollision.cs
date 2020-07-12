@@ -11,7 +11,7 @@ public class PlayerCollision : MonoBehaviour
     public float timeDoors = 1;
     private Rigidbody2D rb;
 
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
@@ -54,6 +54,8 @@ public class PlayerCollision : MonoBehaviour
     {
         Debug.Log("Entré a la corrutina collider");
         movement.enabled = false;
+        AudioMixer.instance.sfx_rat.clip = AudioMixer.instance.eating;
+        AudioMixer.instance.sfx_rat.Play();
         yield return new WaitForSeconds(delay);
         up = true;
         powerController(up);
@@ -66,6 +68,8 @@ public class PlayerCollision : MonoBehaviour
     {
         
         Debug.Log("Entré a la corrutina collision");
+        AudioMixer.instance.sfx_rat.clip = AudioMixer.instance.lockpick;
+        AudioMixer.instance.sfx_rat.Play();
         yield return new WaitForSeconds(delay);
         try
         {

@@ -35,8 +35,8 @@ public class DecoyMode : MonoBehaviour
 
         //dirección
         RaycastHit2D hitFront = Physics2D.Raycast(transform.position, gameObject.transform.right,0.75f,layerMask);//Ray del frente
-        RaycastHit2D hitUp = Physics2D.Raycast(transform.position - gameObject.transform.right * 0.1f, gameObject.transform.up,0.75f,layerMask);//Ray Arriba
-        RaycastHit2D hitDown = Physics2D.Raycast(transform.position - gameObject.transform.right * 0.1f, -gameObject.transform.up,0.75f,layerMask);//Ray Abajo
+        RaycastHit2D hitUp    = Physics2D.Raycast(transform.position - gameObject.transform.right * 0.1f, gameObject.transform.up,0.75f,layerMask);//Ray Arriba
+        RaycastHit2D hitDown  = Physics2D.Raycast(transform.position - gameObject.transform.right * 0.1f, -gameObject.transform.up,0.75f,layerMask);//Ray Abajo
 
 
         if (hitFront.collider != null)
@@ -61,7 +61,11 @@ public class DecoyMode : MonoBehaviour
             }
         }
         if (estoyEnvenenado)
+        {
+            AudioMixer.instance.sfx_rat.clip = AudioMixer.instance.decoy_die;
+            AudioMixer.instance.sfx_rat.Play();
             Destroy(gameObject);
+        }
     }
 
     private void drawLines()
@@ -126,7 +130,6 @@ public class DecoyMode : MonoBehaviour
                 Debug.Log("Estoy envenenado");
                 estoyEnvenenado = true;
             }
-
             Destroy(other.gameObject);
         }
         catch { }
