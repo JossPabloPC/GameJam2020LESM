@@ -61,7 +61,11 @@ public class DecoyMode : MonoBehaviour
             }
         }
         if (estoyEnvenenado)
+        {
+            AudioMixer.instance.sounds.clip = AudioMixer.instance.decoy_die;
+            AudioMixer.instance.sounds.Play();
             Destroy(gameObject);
+        }
     }
 
     private void drawLines()
@@ -126,7 +130,6 @@ public class DecoyMode : MonoBehaviour
                 Debug.Log("Estoy envenenado");
                 estoyEnvenenado = true;
             }
-
             Destroy(other.gameObject);
         }
         catch { }
