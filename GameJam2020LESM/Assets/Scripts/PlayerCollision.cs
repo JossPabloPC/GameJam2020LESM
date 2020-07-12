@@ -61,8 +61,8 @@ public class PlayerCollision : MonoBehaviour
     {
         Debug.Log("Entré a la corrutina collider");
         movement.enabled = false;
-        AudioMixer.instance.sfx_rat.clip = AudioMixer.instance.eating;
-        AudioMixer.instance.sfx_rat.Play();
+        SoundController.instance.sfx_rat.clip = SoundController.instance.eating;
+        SoundController.instance.sfx_rat.Play();
         yield return new WaitForSeconds(delay);
         up = true;
         QuesoBehaviour currentQueso = collision.gameObject.GetComponent<QuesoBehaviour>();
@@ -77,9 +77,9 @@ public class PlayerCollision : MonoBehaviour
         
         Debug.Log("Entré a la corrutina collision");
 
-        AudioMixer.instance.sfx_rat.clip = AudioMixer.instance.lockpick;
-        AudioMixer.instance.sfx_rat.Play();
-        anim.SetInteger("movement", 3);
+        SoundController.instance.sfx_rat.clip = SoundController.instance.lockpick;
+        SoundController.instance.sfx_rat.Play();
+        PlayerController.instance.anim.SetInteger("movement", 3);
         yield return new WaitForSeconds(delay);
         anim.SetInteger("movement", 0);
         try

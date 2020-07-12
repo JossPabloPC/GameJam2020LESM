@@ -71,8 +71,8 @@ public class DecoyMode : MonoBehaviour
 
         if (estoyEnvenenado)
         {
-            AudioMixer.instance.sfx_rat.clip = AudioMixer.instance.decoy_die;
-            AudioMixer.instance.sfx_rat.Play();
+            SoundController.instance.sfx_rat.clip = SoundController.instance.decoy_die;
+            SoundController.instance.sfx_rat.Play();
             Destroy(gameObject);
         }
     }

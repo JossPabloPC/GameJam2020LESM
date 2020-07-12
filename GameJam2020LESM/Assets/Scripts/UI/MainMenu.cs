@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 public class MainMenu : MonoBehaviour
 {
     public Animator transitionAnim;
     public string sceneName;
+
     public void PlayGame()
     {
         StartCoroutine(waitDeploy());
