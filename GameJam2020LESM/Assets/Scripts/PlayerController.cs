@@ -50,6 +50,8 @@ public class PlayerController : MonoBehaviour
             direccion = 1;
             gameObject.transform.Translate(Vector2.right * speed * Time.deltaTime, Space.World);
             gameObject.transform.localScale = new Vector3(1, 1, 1);
+            gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+
         }
 
         else if (Input.GetKey(KeyCode.A))
@@ -59,10 +61,11 @@ public class PlayerController : MonoBehaviour
             anim.SetInteger("movement", 1);
             gameObject.transform.Translate(Vector2.left * speed * Time.deltaTime, Space.World);
             gameObject.transform.localScale = new Vector3(-1, 1, 1);
+            gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+
         }
         else
         {
-            gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
             anim.SetInteger("movement", 0);
         }
     }

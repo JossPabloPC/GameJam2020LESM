@@ -9,12 +9,17 @@ public class PlayerCollision : MonoBehaviour
     private int power = 0;
     public float timeCheese = 2;
     public float timeDoors = 1;
+    private Rigidbody2D rb;
 
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        print("Enter");
         if (Input.GetKeyDown(KeyCode.E))
         {
+        print("Enter");
             if (collision.gameObject.CompareTag("Queso"))
             {
                 StartCoroutine(cheeseController(collision, timeCheese));
@@ -59,11 +64,16 @@ public class PlayerCollision : MonoBehaviour
 
     IEnumerator doorController(Collision2D collision, float delay)
     {
+        
         Debug.Log("Entré a la corrutina collision");
         yield return new WaitForSeconds(delay);
-        Destroy(collision.gameObject);
-        up = false;
-        powerController(up);
+        try
+        {
+            Destroy(collision.gameObject);
+            up = false;
+            powerController(up);
+        }
+        catch { }
     }
 
     void powerController(bool up)
@@ -81,7 +91,16 @@ public class PlayerCollision : MonoBehaviour
         }
         Debug.Log("Poder final: " + power);
     }
+
+    public void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("door"))
+        {
+            rb.velocity = Vector2.zero;
+        }
+    }
 }
+
 
 //Checar si se quiere que se coman más quesos de los que puede almacenar. 
 //If power = -1 --> GAME OVER
