@@ -60,6 +60,7 @@ public class PlayerCollision : MonoBehaviour
     IEnumerator cheeseController(Collider2D collision, float delay)
     {
         Debug.Log("Entré a la corrutina collider");
+        PlayerController.instance.anim.SetInteger("movement", 0);
         movement.enabled = false;
         SoundController.instance.sfx_rat.clip = SoundController.instance.eating;
         SoundController.instance.sfx_rat.Play();
@@ -79,9 +80,11 @@ public class PlayerCollision : MonoBehaviour
 
         SoundController.instance.sfx_rat.clip = SoundController.instance.lockpick;
         SoundController.instance.sfx_rat.Play();
-        PlayerController.instance.anim.SetInteger("movement", 3);
+        PlayerController.instance.anim.SetInteger("movement", 2);
+        movement.enabled = false;
         yield return new WaitForSeconds(delay);
-        anim.SetInteger("movement", 0);
+        PlayerController.instance.anim.SetInteger("movement", 1);
+        movement.enabled = true;
         try
         {
             Destroy(collision.gameObject);

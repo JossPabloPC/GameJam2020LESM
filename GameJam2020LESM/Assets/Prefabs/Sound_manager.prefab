@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2593458128271360357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2593458128271360359}
+  - component: {fileID: 2593458128271360356}
+  m_Layer: 0
+  m_Name: Sound_manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2593458128271360359
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2593458128271360357}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.3663368, y: 0.33769265, z: -2.7994914}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2593458128271360356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2593458128271360357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e90839118b0c08845a024489a320d61f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicVar: {fileID: 24100000, guid: f8bb607978b341543886668b89cb33b9, type: 2}
+  sfxVar: {fileID: 24100000, guid: f8bb607978b341543886668b89cb33b9, type: 2}
+  music_bit: {fileID: 0}
+  sfx_rat: {fileID: 0}
+  sfx_blocker: {fileID: 0}
+  sceneMusic: {fileID: 8300000, guid: 542f18bb50db02c4b9ee07f0cb6c4820, type: 3}
+  escapistWin: {fileID: 8300000, guid: 7175b137bf63a4046b6257a05b9821c1, type: 3}
+  blockerWin: {fileID: 8300000, guid: badfa25ec2863f74799bb61f20c82554, type: 3}
+  pause: {fileID: 8300000, guid: 03e93307da183a744a45405ea6677085, type: 3}
+  door: {fileID: 8300000, guid: 6995f723e2bcd054c8788e7caa76e49f, type: 3}
+  decoy_die: {fileID: 8300000, guid: 9d59d5444ea28f84a954535cdb32f502, type: 3}
+  lockpick: {fileID: 8300000, guid: 6995f723e2bcd054c8788e7caa76e49f, type: 3}
+  eating: {fileID: 8300000, guid: 87fc2ad58ea3964418829ae2cb40ab9d, type: 3}
+  exit: {fileID: 8300000, guid: ccd0a65aa089b2442863dacc786235cd, type: 3}
+  poisonCheese: {fileID: 8300000, guid: f74f9d1ce40e8eb4e96aa5e7208691fa, type: 3}

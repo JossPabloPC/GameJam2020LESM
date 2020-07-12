@@ -24,6 +24,7 @@ public class SoundController : MonoBehaviour
     public AudioClip lockpick;
     public AudioClip eating;
     public AudioClip exit;
+    public AudioClip poisonCheese;
 
 
     private void Awake()

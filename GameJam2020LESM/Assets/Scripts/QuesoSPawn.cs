@@ -49,8 +49,10 @@ public class QuesoSPawn : MonoBehaviour
         {
             try
             {
+                SoundController.instance.sfx_blocker.clip = SoundController.instance.poisonCheese;
+                SoundController.instance.sfx_blocker.Play();
                 barraVenom.transform.localScale = new Vector3(0, 1, 1);
-               quesoEnvenenadoIndx = Random.Range(0, quesosLimpios.Count);
+                quesoEnvenenadoIndx = Random.Range(0, quesosLimpios.Count);
                 QuesoBehaviour currentQueso = quesosLimpios[quesoEnvenenadoIndx].GetComponent<QuesoBehaviour>();
                 currentQueso.envenenar();
                 quesosLimpios.RemoveAt(quesoEnvenenadoIndx);
