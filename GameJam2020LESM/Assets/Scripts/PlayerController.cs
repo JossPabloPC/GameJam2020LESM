@@ -11,10 +11,13 @@ public class PlayerController : MonoBehaviour
     private int power;
     private int direccion;
 
+    public static PlayerController instance;
+
     public Animator anim;
 
     public void Awake()
     {
+        instance = this;
         anim = GetComponent<Animator>();
         rBody = GetComponent<Rigidbody2D>();
     }

@@ -74,8 +74,10 @@ public class PlayerCollision : MonoBehaviour
     {
         
         Debug.Log("Entré a la corrutina collision");
+
         AudioMixer.instance.sfx_rat.clip = AudioMixer.instance.lockpick;
         AudioMixer.instance.sfx_rat.Play();
+        PlayerController.instance.anim.SetInteger("movement", 3);
         yield return new WaitForSeconds(delay);
         try
         {
@@ -120,8 +122,10 @@ public class PlayerCollision : MonoBehaviour
         else
         {
             power--;
+            contadorDeQueso.text = "x " + power;
         }
         Debug.Log("Poder final: " + power);
+
     }
 
     public void OnCollisionExit2D(Collision2D collision)
