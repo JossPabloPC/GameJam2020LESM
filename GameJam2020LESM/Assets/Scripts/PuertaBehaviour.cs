@@ -20,8 +20,8 @@ public class PuertaBehaviour : MonoBehaviour
             foreach (PuertaMovimiento puerta in puertas)
             {
                 puerta.direccion = ! puerta.direccion;
-                AudioMixer.instance.sfx_blocker.clip = AudioMixer.instance.door;
-                AudioMixer.instance.sfx_blocker.Play();
+                SoundController.instance.sfx_blocker.clip = SoundController.instance.door;
+                SoundController.instance.sfx_blocker.Play();
             }
         }
     }
