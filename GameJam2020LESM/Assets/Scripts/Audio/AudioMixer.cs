@@ -8,7 +8,8 @@ public class AudioMixer : MonoBehaviour
     public static AudioMixer instance;
 
     public AudioSource music_bit;
-    public AudioSource sounds;
+    public AudioSource sfx_rat;
+    public AudioSource sfx_blocker;
 
     public AudioClip gameplay;
     public AudioClip escapistWin;
@@ -23,6 +24,8 @@ public class AudioMixer : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        music_bit.clip = gameplay;
+        music_bit.Play();
     }
     // Start is called before the first frame update
     void Start()

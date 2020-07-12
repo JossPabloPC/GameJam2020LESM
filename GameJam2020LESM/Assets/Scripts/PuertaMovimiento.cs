@@ -44,7 +44,9 @@ public class PuertaMovimiento : MonoBehaviour
             else
             {
                 if (gameObject.transform.position.y <= pivot.y + dimension)
+                {
                     rb.AddForce(new Vector2(0, speed * Time.deltaTime));
+                }
                 else
                 {
                     rb.velocity = Vector3.zero;
@@ -57,7 +59,7 @@ public class PuertaMovimiento : MonoBehaviour
             {
                 if (gameObject.transform.position.x >= pivot.x)
                 {
-                    rb.AddForce(new Vector2(speed * Time.deltaTime * -1, 0));
+                    rb.AddForce(new Vector2(speed * Time.deltaTime * -1, 0));;
                 }
                 else
                 {
@@ -67,7 +69,9 @@ public class PuertaMovimiento : MonoBehaviour
             else
             {
                 if (gameObject.transform.position.y >= pivot.y)
+                {
                     rb.AddForce(new Vector2(0, speed * Time.deltaTime * -1));
+                }
                 else
                 {
                     rb.velocity = Vector3.zero;
