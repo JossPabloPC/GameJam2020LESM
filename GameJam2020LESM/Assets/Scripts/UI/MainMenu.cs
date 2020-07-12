@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator waitDeploy()
     {
-        transitionAnim.SetTrigger("end");
+        transitionAnim.SetTrigger("start");
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(sceneName);
     }

@@ -35,8 +35,8 @@ public class DecoyMode : MonoBehaviour
 
         //dirección
         RaycastHit2D hitFront = Physics2D.Raycast(transform.position, gameObject.transform.right,0.75f,layerMask);//Ray del frente
-        RaycastHit2D hitUp = Physics2D.Raycast(transform.position - gameObject.transform.right * 0.1f, gameObject.transform.up,0.75f,layerMask);//Ray Arriba
-        RaycastHit2D hitDown = Physics2D.Raycast(transform.position - gameObject.transform.right * 0.1f, -gameObject.transform.up,0.75f,layerMask);//Ray Abajo
+        RaycastHit2D hitUp    = Physics2D.Raycast(transform.position - gameObject.transform.right * 0.1f, gameObject.transform.up,0.75f,layerMask);//Ray Arriba
+        RaycastHit2D hitDown  = Physics2D.Raycast(transform.position - gameObject.transform.right * 0.1f, -gameObject.transform.up,0.75f,layerMask);//Ray Abajo
 
 
         if (hitFront.collider != null)
