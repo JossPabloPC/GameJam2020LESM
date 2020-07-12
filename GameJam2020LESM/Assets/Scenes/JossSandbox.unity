@@ -2246,19 +2246,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 287306364}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7415d0e1bb06f5f418ecd4cf76d088be, type: 3}
+  m_Script: {fileID: 11500000, guid: e90839118b0c08845a024489a320d61f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicVar: {fileID: 24100000, guid: f8bb607978b341543886668b89cb33b9, type: 2}
+  sfxVar: {fileID: 24100000, guid: f8bb607978b341543886668b89cb33b9, type: 2}
   music_bit: {fileID: 1568708454}
   sfx_rat: {fileID: 1935101566}
   sfx_blocker: {fileID: 261075638}
-  gameplay: {fileID: 8300000, guid: 542f18bb50db02c4b9ee07f0cb6c4820, type: 3}
+  sceneMusic: {fileID: 8300000, guid: 542f18bb50db02c4b9ee07f0cb6c4820, type: 3}
   escapistWin: {fileID: 8300000, guid: 7175b137bf63a4046b6257a05b9821c1, type: 3}
   blockerWin: {fileID: 8300000, guid: badfa25ec2863f74799bb61f20c82554, type: 3}
+  pause: {fileID: 8300000, guid: 03e93307da183a744a45405ea6677085, type: 3}
   door: {fileID: 8300000, guid: 6995f723e2bcd054c8788e7caa76e49f, type: 3}
   decoy_die: {fileID: 8300000, guid: 9d59d5444ea28f84a954535cdb32f502, type: 3}
-  lockpick: {fileID: 8300000, guid: 5a8a92c7d5cfd7947b507767623103ce, type: 3}
+  lockpick: {fileID: 8300000, guid: 6995f723e2bcd054c8788e7caa76e49f, type: 3}
   eating: {fileID: 8300000, guid: 87fc2ad58ea3964418829ae2cb40ab9d, type: 3}
+  exit: {fileID: 8300000, guid: ccd0a65aa089b2442863dacc786235cd, type: 3}
 --- !u!4 &287306366
 Transform:
   m_ObjectHideFlags: 0
@@ -8237,7 +8241,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.018638
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

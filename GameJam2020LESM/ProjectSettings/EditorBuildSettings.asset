@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: b1442991efe23ab429ddd72c2d9d59ed
   - enabled: 1
-    path: Assets/Scenes/Main.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+    path: Assets/Scenes/JossSandbox.unity
+    guid: 9740c85f3c8abd54c8acb58722d6eefe
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/MarianaSandBox.unity
     guid: 746e8df537ceacf48a84e6cb05efcb8f
   m_configObjects: {}
