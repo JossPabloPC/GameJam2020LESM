@@ -5,6 +5,8 @@ using UnityEngine;
 public class DecoyMode : MonoBehaviour
 {
     private float[] direction = new float[2];
+    private float[] magnitud = new float[2];
+
     public float speed;
     public float currectSpeed;
     private bool estoyEnvenenado;
@@ -20,6 +22,8 @@ public class DecoyMode : MonoBehaviour
         currectSpeed = speed;
         direction[0] = 1;
         direction[1] = -1;
+        magnitud[0] = 0.5f;
+        magnitud[1] = 1.5f;
         anim.SetInteger("movement", 1);
     }
 
@@ -41,25 +45,30 @@ public class DecoyMode : MonoBehaviour
 
         if (hitFront.collider != null)
         {//Choques al frente
-            Debug.Log(hitFront.collider.tag);
+            //Debug.Log(hitFront.collider.tag);
             if(hitFront.collider.CompareTag("Wall")) {
                 gameObject.transform.eulerAngles += new Vector3(0, 0, 90 * direction[Random.Range(0,2)]);
+            }
+            if (hitFront.collider.CompareTag("door"))
+            {
+                gameObject.transform.eulerAngles += new Vector3(0, 0, 90 * direction[Random.Range(0, 2)]);
             }
         }
         if (hitUp.collider != null)
         {//Choques a la Arriba
-            if (hitUp.collider.CompareTag("door") || hitUp.collider.CompareTag("Queso"))
+            if (hitUp.collider.CompareTag("Queso"))
             {
                 gameObject.transform.eulerAngles += new Vector3(0, 0, 90);
             }
         }
         if (hitDown.collider != null)
         {//Choques a la Abajo
-            if (hitDown.collider.CompareTag("door") || hitDown.collider.CompareTag("Queso"))
+            if (hitDown.collider.CompareTag("Queso"))
             {
                 gameObject.transform.eulerAngles += new Vector3(0, 0, -90);
             }
         }
+
         if (estoyEnvenenado)
         {
             AudioMixer.instance.sfx_rat.clip = AudioMixer.instance.decoy_die;
@@ -86,7 +95,7 @@ public class DecoyMode : MonoBehaviour
 
             if (other.CompareTag("Queso"))
             {
-                Debug.Log("Colisione con Queso");
+                //Debug.Log("Colisione con Queso");
                 StartCoroutine(WaitQueso(other));
             }
 
@@ -99,7 +108,7 @@ public class DecoyMode : MonoBehaviour
         {
             if (collision.collider.CompareTag("door"))
             {
-                Debug.Log("Colisione con puerta");
+                //Debug.Log("Colisione con puerta");
                 currectSpeed = 0;
                 StartCoroutine(WaitDoor());
             }
@@ -117,7 +126,7 @@ public class DecoyMode : MonoBehaviour
     {
         yield return new WaitForSeconds(0.25f);
         currectSpeed = 0;
-        Debug.Log("Inicie corrutina");
+        //Debug.Log("Inicie corrutina");
         anim.SetInteger("movement", 0);
         yield return new WaitForSeconds(2);
         anim.SetInteger("movement", 1);
@@ -125,9 +134,10 @@ public class DecoyMode : MonoBehaviour
         try
         {
             QuesoBehaviour currentQueso = other.gameObject.GetComponent<QuesoBehaviour>();
+            //Debug.LogWarning("Quiero comer queso" + currentQueso.isEnvenenado);
             if (currentQueso.isEnvenenado == true)
             {
-                Debug.Log("Estoy envenenado");
+                //Debug.Log("Estoy envenenado");
                 estoyEnvenenado = true;
             }
             Destroy(other.gameObject);

@@ -5,6 +5,8 @@ using UnityEngine;
 public class QuesoSPawn : MonoBehaviour
 {
     public GameObject Queso;
+    public float venomRecover;
+    public GameObject barraVenom;
     public double delay;
     private double timer;
     private Vector3 spawnPoint;
@@ -18,14 +20,16 @@ public class QuesoSPawn : MonoBehaviour
     {
         Instance = this;
     }
-    void Start(){    
-
+    void Start(){
+        barraVenom.transform.localScale = new Vector3(0, 1, 1);
         timer = delay;   
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (barraVenom.transform.localScale.x <= 1)
+            barraVenom.transform.localScale += new Vector3(venomRecover * Time.deltaTime, 0, 0);
         timer -= 0.01;
         if(timer <= 0)
         {
@@ -41,11 +45,12 @@ public class QuesoSPawn : MonoBehaviour
     }
     private void envenenarQueso()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && barraVenom.transform.localScale.x >= 1)
         {
             try
             {
-                quesoEnvenenadoIndx = Random.Range(0, quesosLimpios.Count);
+                barraVenom.transform.localScale = new Vector3(0, 1, 1);
+               quesoEnvenenadoIndx = Random.Range(0, quesosLimpios.Count);
                 QuesoBehaviour currentQueso = quesosLimpios[quesoEnvenenadoIndx].GetComponent<QuesoBehaviour>();
                 currentQueso.envenenar();
                 quesosLimpios.RemoveAt(quesoEnvenenadoIndx);

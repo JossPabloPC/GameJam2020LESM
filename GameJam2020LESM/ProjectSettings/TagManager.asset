@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - door
   - Decoy
+  - exit
   layers:
   - Default
   - TransparentFX

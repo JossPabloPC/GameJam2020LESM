@@ -1,19 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerCollision : MonoBehaviour
 {
     public PlayerController movement;
+    public TextMeshProUGUI contadorDeQueso;
     private bool up;
-    private int power = 0;
+    public int power = 0;
     public float timeCheese = 2;
     public float timeDoors = 1;
     private Rigidbody2D rb;
+    public static  PlayerCollision instance;
 
     private void Awake()
     {
+        instance = this;
         rb = GetComponent<Rigidbody2D>();
+        contadorDeQueso.text = "x 0";
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -58,7 +63,8 @@ public class PlayerCollision : MonoBehaviour
         AudioMixer.instance.sfx_rat.Play();
         yield return new WaitForSeconds(delay);
         up = true;
-        powerController(up);
+        QuesoBehaviour currentQueso = collision.gameObject.GetComponent<QuesoBehaviour>();
+        powerController(up, currentQueso);
         up = false;
         Destroy(collision.gameObject);
         movement.enabled = true;
@@ -87,6 +93,28 @@ public class PlayerCollision : MonoBehaviour
             if (power < 5)
             {
                 power++;
+            }
+        }
+        else
+        {
+            power--;
+        }
+        Debug.Log("Poder final: " + power);
+    }
+
+    void powerController(bool up, QuesoBehaviour currentQueso)
+    {
+        if (up)
+        {
+            if (power < 5 && !currentQueso.isEnvenenado)
+            {
+                power++;
+                contadorDeQueso.text = "x " + power;
+            }
+            else if (power > 0 && currentQueso.isEnvenenado)
+            {
+                power--;
+                contadorDeQueso.text = "x " + power;
             }
         }
         else
