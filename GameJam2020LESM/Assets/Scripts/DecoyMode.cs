@@ -11,6 +11,7 @@ public class DecoyMode : MonoBehaviour
     public float currectSpeed;
     private bool estoyEnvenenado;
     public Animator anim;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -71,9 +72,7 @@ public class DecoyMode : MonoBehaviour
 
         if (estoyEnvenenado)
         {
-            SoundController.instance.sfx_rat.clip = SoundController.instance.decoy_die;
-            SoundController.instance.sfx_rat.Play();
-            Destroy(gameObject);
+            StartCoroutine(waitDeath());
         }
     }
 
@@ -143,5 +142,15 @@ public class DecoyMode : MonoBehaviour
             Destroy(other.gameObject);
         }
         catch { }
+    }
+
+    IEnumerator waitDeath()
+    {
+        currectSpeed = 0;
+        anim.SetInteger("movement", 3);
+        yield return new WaitForSeconds(1);
+        SoundController.instance.sfx_rat.clip = SoundController.instance.decoy_die;
+        SoundController.instance.sfx_rat.Play();
+        Destroy(gameObject);
     }
 }
